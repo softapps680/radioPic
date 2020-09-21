@@ -59,13 +59,13 @@ public class ImageAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.gridchild, parent, false);
         //Vad som ska med i varje item dessa finns i gridchild
             RadioButton btn =  (RadioButton)convertView.findViewById(R.id.btnPet);
-            ImageView image = (ImageView)convertView.findViewById(R.id.imgPet);
+
 
             btn.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Du klicka nu"+position, Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(context, "Du klicka nu "+position, Toast.LENGTH_LONG).show();
+                    //Behave like a radiogroup
                     if ((position != mSelectedPosition && mSelectedRB != null)) {
                         mSelectedRB.setChecked(false);
                         // Toast.makeText(context, "Du valde"+position, Toast.LENGTH_LONG).show();
@@ -76,24 +76,15 @@ public class ImageAdapter extends BaseAdapter {
 
                 });
 
-            //Hämtar petobjekt mall för varje  position vi är på i listan vi skicka
+            //get the Pet object for each position in the list
             Pet pet = items.get(position);
             btn.setText(pet.Name);
-           // btn.setButtonDrawable(pet.Pic);
-            //image.setImageResource(pet.Pic);
-            //Drawable d= pet.PicName;
-         //   btn.setBackground(pet.PicName);
-           // android:button="@drawable/radio_selector"
+            //apply selector on RadioButton
             btn.setButtonDrawable(pet.Pic);
     }
         else {
             RadioButton btn = (RadioButton) convertView.getTag();
         }
-
-
-
-
-
 
         return convertView;
     }
